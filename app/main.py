@@ -16,7 +16,7 @@ def get_application() -> FastAPI:
         title="PROJECT_NAME",
         debug=True,
         version="1.0.0",
-        root_path="/placements",
+        root_path="/widgets",
         # lifespan=lifespan
     )
 
