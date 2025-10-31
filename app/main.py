@@ -17,7 +17,7 @@ def get_application() -> FastAPI:
         debug=True,
         version="1.0.0",
         root_path="/widgets",
-        # lifespan=lifespan
+        lifespan=lifespan
     )
 
     application.add_middleware(

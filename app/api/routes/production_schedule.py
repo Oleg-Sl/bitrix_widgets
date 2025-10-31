@@ -21,23 +21,23 @@ logging.basicConfig(level=logging.INFO, filename="logs/production_schedule.log",
                     format="%(asctime)s %(levelname)s %(message)s")
 
 
-@router.get("/run-bp-update-stages")
-async def run_bp(request: Request, data: Form) -> HTMLResponse:
-    content_type = request.headers.get("content-type", "")
-    if content_type == 'application/json':
-        pass
-    elif  content_type == '' or content_type == 'multipart/form-data':
-        pass
+# @router.get("/run-bp-update-stages")
+# async def run_bp(request: Request, data: Form) -> HTMLResponse:
+#     content_type = request.headers.get("content-type", "")
+#     if content_type == 'application/json':
+#         pass
+#     elif  content_type == '' or content_type == 'multipart/form-data':
+#         pass
 
-    logging.info({
-        'headers': request.headers,
-        'get_params': dict(request.query_params),
-        'body': ''
-    })
+#     logging.info({
+#         'headers': request.headers,
+#         'get_params': dict(request.query_params),
+#         'body': ''
+#     })
 
-    return templates.TemplateResponse(request=request, name="update_stages.html")
+#     return templates.TemplateResponse(request=request, name="update_stages.html")
 
-@router.post("/run-bp-update-stages")
-async def run_bp(request: Request) -> HTMLResponse:
-    return templates.TemplateResponse(request=request, name="update_stages.html")
+# @router.post("/run-bp-update-stages")
+# async def run_bp(request: Request) -> HTMLResponse:
+#     return templates.TemplateResponse(request=request, name="update_stages.html")
 
