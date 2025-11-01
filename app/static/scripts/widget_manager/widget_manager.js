@@ -1,7 +1,7 @@
-import WidgetController from './widget_controller.js';
+import { WidgetController } from './widget_controller.js';
 
 
-export default class App {
+export class App {
     constructor(apiClient) {
         // this.container = container;
         this.apiClient = apiClient;

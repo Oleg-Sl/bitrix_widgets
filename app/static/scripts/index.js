@@ -1,5 +1,5 @@
-import WidgetManager from './widget_manager/widget_manager.js';
-import BitrixClient from './bitrix_api.js';
+import { WidgetManager } from './widget_manager/widget_manager.js';
+import { BitrixClient } from './bitrix_api.js';
 
 
 document.addEventListener("DOMContentLoaded", () => {
