@@ -2,20 +2,33 @@
 
 export class BitrixClient {
 
-    callMethodPromise(method, params) {
+    // callMethodPromise(method, params) {
+    //     return new Promise((resolve, reject) => {
+    //         BX24.callMethod(
+    //             method,
+    //             params,
+    //             (result) => {
+    //                 resolve(result);
+    //             }
+    //         );
+    //     });
+    // }
+
+    async callMethodPromise(method, params = {}) {
         return new Promise((resolve, reject) => {
-            BX24.callMethod(
-                method,
-                params,
-                (result) => {
-                    resolve(result);
+            let callback = result => {
+                if (result.status != 200 || result.error()) {
+                    console.log(`${result.error()} (callMethod ${method}: ${JSON.stringify(params)})`);
+                    return reject("");
                 }
-            );
+                return resolve(result.data());
+            };
+            BX24.callMethod(method, params, callback);
         });
     }
 
     async callMethod(method, params) {
-        return await this.callMethodPromise(method, params).answer;
+        return await this.callMethodPromise(method, params);
     }
 
     async runBP(templateId, documentId, params = {}) {
