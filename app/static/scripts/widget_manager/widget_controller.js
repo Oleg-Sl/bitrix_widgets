@@ -17,12 +17,12 @@ export class WidgetController {
 
         this.render(this.availableEvents, this.registeredEvents);
 
-        // this.elemSelectTypeEvent = this.container.querySelector(".bx24_events__type_event select");
-        // this.elemSelectNameEvent = this.container.querySelector(".bx24_events__name_event select");
-        // this.elemInputHandlerEvent = this.container.querySelector(".bx24_events__handler_event input");
-        // this.elemInputSourceEvent = this.container.querySelector(".bx24_events__source_event input");
-        // this.btnAddEvent = this.container.querySelector(".bx24_events__add_event button");
-        // this.setOfflineEvent(this.elemSelectTypeEvent.value)
+        this.elemSelectTypeEvent = this.container.querySelector(".bx24_events__type_event select");
+        this.elemSelectNameEvent = this.container.querySelector(".bx24_events__name_event select");
+        this.elemInputHandlerEvent = this.container.querySelector(".bx24_events__handler_event input");
+        this.elemInputSourceEvent = this.container.querySelector(".bx24_events__source_event input");
+        this.btnAddEvent = this.container.querySelector(".bx24_events__add_event button");
+        this.setOfflineEvent(this.elemSelectTypeEvent.value)
 
         // this.initHandler();
         // BX24.fitWindow();

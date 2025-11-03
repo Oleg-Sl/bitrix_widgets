@@ -1,7 +1,7 @@
 import { WidgetController } from './widget_controller.js';
 
 
-export class App {
+export class WigetManager {
     constructor(apiClient) {
         this.apiClient = apiClient;
         
