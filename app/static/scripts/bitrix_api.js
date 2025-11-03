@@ -15,7 +15,7 @@ export class BitrixClient {
     }
 
     async callMethod(method, params) {
-        return await this.callMethodPromise(method, params).json();
+        return await this.callMethodPromise(method, params);
     }
 
     async runBP(templateId, documentId, params = {}) {
