@@ -1,4 +1,4 @@
-// import WidgetManagerTemplate from "./widget_manager_template.js";
+import WidgetManagerTemplate from "./widget_manager_template.js";
 
 
 export class WidgetController {
