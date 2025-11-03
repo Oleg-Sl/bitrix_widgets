@@ -15,11 +15,11 @@ export class BitrixClient {
     }
 
     async callMethod(method, params) {
-        return await callMethodPromise(method, params);
+        return await this.callMethodPromise(method, params);
     }
 
     async runBP(templateId, documentId, params = {}) {
-        return await callMethodPromise(
+        return await this.callMethodPromise(
             'bizproc.workflow.start',
             {
                 TEMPLATE_ID: templateId,
@@ -30,7 +30,7 @@ export class BitrixClient {
     }
 
     async runSmartProcessBP(bpId, entityTypeId, entityId, params = {}) {
-        return await runBP(
+        return await this.runBP(
             bpId,
             ['crm', 'Bitrix\\Crm\\Integration\\BizProc\\Document\\Dynamic', `DYNAMIC_${entityTypeId}_${entityId}`],
             params
