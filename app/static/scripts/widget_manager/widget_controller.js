@@ -14,6 +14,8 @@ export class WidgetController {
     async initialization() {
         this.availableEvents = await this.apiClient.callMethod("events", {});
         this.registeredEvents = await this.apiClient.callMethod("event.get", {});
+        console.log('this.availableEvents = ', this.availableEvents);
+        console.log('this.registeredEvents = ', this.registeredEvents);
 
         this.render(this.availableEvents, this.registeredEvents);
 
@@ -25,7 +27,7 @@ export class WidgetController {
         this.setOfflineEvent(this.elemSelectTypeEvent.value)
 
         // this.initHandler();
-        // BX24.fitWindow();
+        BX24.fitWindow();
     }
 
     initHandler() {
