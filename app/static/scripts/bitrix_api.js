@@ -1,6 +1,7 @@
 
 
 export class BitrixClient {
+
     callMethodPromise(method, params) {
         return new Promise((resolve, reject) => {
             BX24.callMethod(
@@ -13,9 +14,12 @@ export class BitrixClient {
         });
     }
 
+    async callMethod(method, params) {
+        return await callMethodPromise(method, params);
+    }
 
     async runBP(templateId, documentId, params = {}) {
-        const result = await callMethodPromise(
+        return await callMethodPromise(
             'bizproc.workflow.start',
             {
                 TEMPLATE_ID: templateId,
@@ -23,7 +27,6 @@ export class BitrixClient {
                 PARAMETERS: params
             }
         );
-        return result;
     }
 
     async runSmartProcessBP(bpId, entityTypeId, entityId, params = {}) {
