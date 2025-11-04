@@ -14,7 +14,7 @@ export class PlacementController {
 
     async initialization() {
         this.placementsData = await this.getPlacements();
-
+        console.log('this.placementsData = ', this.placementsData);
         this.registredPlacements = this.placementsData?.registredPlacements;
         this.awailablePlacements = this.placementsData?.awailablePlacements;
 
@@ -38,7 +38,7 @@ export class PlacementController {
                 registredPlacements: 'placement.get',
                 awailablePlacements: 'placement.list'
             }
-        )?.result;
+        );
     }
 
 }
