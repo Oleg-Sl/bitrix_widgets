@@ -5,38 +5,36 @@ export class PlacementTemplate {
         return `
             ${this.createStyles()}
             <div class="bx24_events__table_events_container">
-                ${this.createPlacementsTable(registeredEvents)}
+                ${this.createPlacementsTable(placements)}
+            </div>
+            <div>
+                ${this.registerPlacementsTable()}
             </div>
         `;
     }
 
-    static createAvailableEventsTable(availableEvents) {
+    static registerPlacementsTable() {
         return `
-            <h4>Регистрация событий</h4>
+            <h4>Регистрация виджета</h4>
             <div class="border border-1 rounded p-3">
                 <div class="bx24_events__type_event">
-                    <label for="registry_event__selectTypeEvent" class="form-label">Тип события</label>
-                    <select class="form-select bx24_events__registry_event_select" aria-label="Default select example" id="registry_event__selectTypeEvent">
-                        <option value="online" selected>Онлайн</option>
-                        <option value="offline">Оффлайн</option>
-                    </select>    
-                </div>
-                <div class="bx24_events__name_event">
-                    <label for="name_event__selectTypeEvent" class="form-label">Название события</label>
-                    <select class="form-select" aria-label="Default select example" id="name_event__selectTypeEvent">
-                        ${this.getOptionsHTML(availableEvents)}
-                    </select>    
+                    <label for="name_placementt" class="form-label">Идентификатор встройки виджета</label>
+                    <input class="form-control" type="text" placeholder="..." aria-label="input example" id="name_placementt">
                 </div>
                 <div class="bx24_events__handler_event">
-                    <label for="name_event__handlerEvent" class="form-label">URL обработчика</label>
-                    <input class="form-control" type="text" placeholder="..." aria-label="input example" id="name_event__handlerEvent">
+                    <label for="url_placement" class="form-label">URL обработчика места встройки виджета</label>
+                    <input class="form-control" type="text" placeholder="..." aria-label="input example" id="url_placement">
                 </div>
-                <div class="bx24_events__source_event">
-                    <label for="name_event__sourceKey" class="form-label">Ключ источника</label>
-                    <input class="form-control" type="text" placeholder="..." aria-label="input example" id="name_event__sourceKey">
+                <div class="bx24_events__handler_event">
+                    <label for="title_placement" class="form-label">Название виджета </label>
+                    <input class="form-control" type="text" placeholder="..." aria-label="input example" id="title_placement">
                 </div>
-                <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-2 bx24_events__add_event">
-                    <button class="btn btn-primary me-md-2" type="button">Добавить</button>
+                <div class="bx24_events__handler_event">
+                    <label for="description_placement" class="form-label">Описание виджета</label>
+                    <input class="form-control" type="text" placeholder="..." aria-label="input example" id="description_placement">
+                </div>
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-2 register-placement">
+                    <button class="btn btn-primary me-md-2" type="button">Зарегистрировать</button>
                 </div>
             </div>
         `;
@@ -62,28 +60,13 @@ export class PlacementTemplate {
         `;
         return content;
     }
-        //     {
-        //     "placement": "CRM_DEAL_LIST_TOOLBAR",
-        //     "userId": 0,
-        //     "handler": "https://myapp.com/?handler=1",
-        //     "options": [],
-        //     "title": "Add invoice",
-        //     "description": "",
-        //     "langAll": {
-        //         "ru": {
-        //             "TITLE": "Add invoice",
-        //             "DESCRIPTION": "",
-        //             "GROUP_NAME": "Documents"
-        //         }
-        //     }
-        // },
 
     static generatePlacementsTbodyHTML(placements) {
         let content = '';
         for (let placement of placements) {
             content += this.getPlacementsTbodyHTML(placement.placement, placement.handler, placement.title, placement.description, placement.options);
         }
-        return content
+        return content;
     }
     
     static getPlacementsTbodyHTML(placement, handler, title, description, options) {

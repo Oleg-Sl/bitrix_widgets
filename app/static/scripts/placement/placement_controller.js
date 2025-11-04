@@ -13,12 +13,7 @@ export class PlacementController {
 
     async initialization() {
         this.placements = await this.getPlacements();
-        // console.log('eventsData = ', eventsData);
-        // this.availableEvents = eventsData?.result?.availableEvents;
-        // this.registeredEvents = eventsData?.result?.registeredEvents;
-        // console.log('this.availableEvents = ', this.availableEvents);
         console.log('placements = ', this.placements);
-
         this.render();
     }
 
