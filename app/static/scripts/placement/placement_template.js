@@ -1,6 +1,6 @@
 
 
-export default class WidgetManagerTemplate {
+export class PlacementTemplate {
     static createTable(eventsData) {
         let content = `
             <table class="table table-hover table-bordered caption-top bx24_events__table_events">
@@ -48,7 +48,8 @@ export default class WidgetManagerTemplate {
         `;
     }
 
-    static createAppHTML(contentRegistredTableHTML, eventsList) {
+    static createPlacementsHTML(availableEvents, eventsList) {
+        const contentRegistredTableHTML = this.createTable(availableEvents);
         let content = `
             <style type="text/css">
                 .bx24_events__table_events_remove_row {

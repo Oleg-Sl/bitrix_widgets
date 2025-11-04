@@ -1,7 +1,9 @@
+import { PlacementTemplate } from './placement_template.js';
 
 
 export class PlacementController {
     constructor(selector, apiClient) {
+        this.template = PlacementTemplate;
         this.selector = selector;
         this.apiClient = apiClient;
         this.container = document.querySelector(selector);
@@ -19,7 +21,12 @@ export class PlacementController {
         console.log('this.availableEvents = ', this.availableEvents);
         console.log('this.registeredEvents = ', this.registeredEvents);
 
-        
+        this.render();
+    }
+
+    render() {
+        const contentHTML = this.template.createPlacementsHTML(this.availableEvents, this.registeredEvents);
+        this.container.innerHTML = contentHTML;
     }
 
     async getEvents() {
