@@ -9,6 +9,8 @@ export class PlacementController {
         this.container = document.querySelector(selector);
 
         this.placements = null;
+
+        
     }
 
     async initialization() {

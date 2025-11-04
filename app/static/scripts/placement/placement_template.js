@@ -18,7 +18,7 @@ export class PlacementTemplate {
             <h4>Регистрация виджета</h4>
             <div class="border border-1 rounded p-3">
                 <div class="bx24_events__type_event">
-                    <label for="name_placementt" class="form-label">Идентификатор встройки виджета</label>
+                    <label for="name_placementt" class="form-label">Идентификатор места встройки виджета</label>
                     <input class="form-control" type="text" placeholder="..." aria-label="input example" id="name_placementt">
                 </div>
                 <div class="bx24_events__handler_event">
@@ -26,7 +26,7 @@ export class PlacementTemplate {
                     <input class="form-control" type="text" placeholder="..." aria-label="input example" id="url_placement">
                 </div>
                 <div class="bx24_events__handler_event">
-                    <label for="title_placement" class="form-label">Название виджета </label>
+                    <label for="title_placement" class="form-label">Название виджета</label>
                     <input class="form-control" type="text" placeholder="..." aria-label="input example" id="title_placement">
                 </div>
                 <div class="bx24_events__handler_event">
@@ -46,10 +46,11 @@ export class PlacementTemplate {
                 <caption>Список установленных обработчиков событий</caption>
                 <thead>
                     <tr>
-                        <th scope="col">Событие</th>
-                        <th scope="col">Тип события</th>
+                        <th scope="col">Место встройки</th>
                         <th scope="col">URL обработчика</th>
-                        <th scope="col">Коннектор</th>
+                        <th scope="col">Название</th>
+                        <th scope="col">Описание</th>
+                        <th scope="col">Опции</th>
                         <th scope="col"></th>
                     </tr>
                 </thead>
@@ -73,7 +74,6 @@ export class PlacementTemplate {
         return `
             <tr data-placement="${placement}" data-handler="${handler}" data-title="${title}" data-connector="${description}">
                 <td scope="row">${placement}</td>
-                <td>${typeEventRus}</th>
                 <td>${handler || ""}</td>
                 <td>${title || ""}</td>
                 <td>${description || ""}</td>
