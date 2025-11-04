@@ -12,6 +12,7 @@ export class PlacementController {
         this.awailablePlacements = null;
 
         this.buttonCreateWidget = null;
+        this.buttonSpinnerCreateWidget = null;
         this.inputPlacementName = null;
         this.inputPlacementUrl = null;
         this.inputPlacementTitle = null;
@@ -28,6 +29,7 @@ export class PlacementController {
         this.render();
 
         this.buttonCreateWidget = document.querySelector('#buttonCreateWidget');
+        this.buttonSpinnerCreateWidget = document.querySelector('#buttonSpinnerCreateWidget');
         this.inputPlacementName = document.querySelector('#name_placement');
         this.inputPlacementUrl = document.querySelector('#url_placement');
         this.inputPlacementTitle = document.querySelector('#title_placement');
@@ -40,7 +42,6 @@ export class PlacementController {
         if (this.buttonCreateWidget) {
             this.buttonCreateWidget.addEventListener('click', this.registerWidget.bind(this));
         }
-
     }
 
     render() {
@@ -52,16 +53,29 @@ export class PlacementController {
     }
 
     async registerWidget() {
+        
         const placementName = this.inputPlacementName.value;
         const placementUrl = this.inputPlacementUrl.value;
         const placementTitle = this.inputPlacementTitle.value;
-        const placementDescribe = this.inputPlacementDescribe.vaue;
+        const placementDescribe = this.inputPlacementDescribe.value;
         console.log({
             placementName,
             placementUrl,
             placementTitle,
             placementDescribe
         });
+
+        this.buttonCreateWidget.diabled = true;
+        this.buttonSpinnerCreateWidget.classList.remove('d-none');
+        try {
+            const result = this.registerPlacements(placementName, placementUrl, placementTitle, placementDescribe);
+            console.log('result = ', result);
+        } catch(error) {
+            console.error('widget registration error: ', error);
+        } finally {
+            this.buttonCreateWidget.disabled = false;
+            this.buttonSpinnerCreateWidget.classList.add('d-none');
+        }
     }
 
     async getPlacements() {
@@ -69,6 +83,19 @@ export class PlacementController {
             {
                 registredPlacements: 'placement.get',
                 awailablePlacements: 'placement.list'
+            }
+        );
+    }
+
+    async registerPlacements(placementName, placementUrl, placementTitle, placementDescribe) {
+        return await this.apiClient.callMethod(
+            "placement.bind",
+            { 
+                "PLACEMENT": placementName,
+                "HANDLER": placementUrl,
+                "OPTIONS": {},
+                "TITLE": placementTitle,
+                "DESCRIPTION": placementDescribe,
             }
         );
     }
