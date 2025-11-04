@@ -87,7 +87,7 @@ export class PlacementTemplate {
                 <td>${options}</td>
                 <td>
                     <div class="table-cell-settings bx24_events__table_events_remove_row placement_remove">
-                        <i class="bi bi-trash bx24_events__table_events_remove_row_i" title="Удалить"></i>
+                        <i class="bi bi-trash bx24_events__table_events_remove_row_i placement_remove" title="Удалить"></i>
                     </div>
                 </td>
             </tr>
