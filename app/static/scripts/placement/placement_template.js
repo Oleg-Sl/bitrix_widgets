@@ -2,6 +2,8 @@
 
 export class PlacementTemplate {
     static createPlacementsTable(awailablePlacements, registredPlacements) {
+        console.log('awailablePlacements = ', awailablePlacements);
+        console.log('registredPlacements = ', registredPlacements);
         return `
             ${this.createStyles()}
             <div class="bx24_events__table_events_container">

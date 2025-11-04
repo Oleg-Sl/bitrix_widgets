@@ -14,12 +14,11 @@ export class PlacementController {
 
     async initialization() {
         this.placementsData = await this.getPlacements();
-        console.log('this.placementsData = ', this.placementsData);
         this.registredPlacements = this.placementsData?.result?.registredPlacements;
         this.awailablePlacements = this.placementsData?.result?.awailablePlacements;
 
         console.log('this.registredPlacements = ', this.registredPlacements);
-        console.log('this.awailablePlacements = ', this.awailablePlacements);
+        // console.log('this.awailablePlacements = ', this.awailablePlacements);
         this.render();
     }
 
