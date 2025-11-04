@@ -14,9 +14,12 @@ export class PlacementController {
     async initialization() {
         const eventsData = await this.getEvents();
         console.log('eventsData = ', eventsData);
-        this.availableEvents = eventsData?.availableEvents;
-        this.registeredEvents = eventsData?.registeredEvents;
+        this.availableEvents = eventsData?.result?.availableEvents;
+        this.registeredEvents = eventsData?.result?.registeredEvents;
+        console.log('this.availableEvents = ', this.availableEvents);
+        console.log('this.registeredEvents = ', this.registeredEvents);
 
+        
     }
 
     async getEvents() {

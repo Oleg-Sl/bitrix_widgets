@@ -1,4 +1,3 @@
-// import { WigetManager } from './widget_manager/widget_manager.js';
 import { BitrixClient } from './bitrix_api.js';
 import { WigetManager } from './widget_manager.js';
 
