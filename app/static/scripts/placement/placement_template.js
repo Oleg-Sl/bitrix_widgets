@@ -22,9 +22,11 @@ export class PlacementTemplate {
             <div class="border border-1 rounded p-3">
                 <div class="bx24_events__type_event">
                     <label for="name_placementt" class="form-label">Идентификатор места встройки виджета</label>
-                    <select class="form-select chosen-select" aria-label="Default select example" id="name_placement" style="display: none;">
-                        ${this.getOptionsHTML(awailablePlacements)}
-                    </select>   
+                    <div>
+                        <select class="form-select chosen-select" aria-label="Default select example" id="name_placement">
+                            ${this.getOptionsHTML(awailablePlacements)}
+                        </select>
+                    </div>   
                 </div>
                 <div class="bx24_events__handler_event">
                     <label for="url_placement" class="form-label">URL обработчика места встройки виджета</label>
