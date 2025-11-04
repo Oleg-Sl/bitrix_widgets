@@ -62,22 +62,22 @@ export class PlacementTemplate {
                     </tr>
                 </thead>
                 <tbody>
-                    ${this.generatePlacementsTbodyHTML(placements)}
+                    ${this.getPlacementsTbodyHTML(placements)}
                 </tbody>
             </table>
         `;
         return content;
     }
 
-    static generatePlacementsTbodyHTML(placements) {
+    static getPlacementsTbodyHTML(placements) {
         let content = '';
         for (let placement of placements) {
-            content += this.getPlacementsTbodyHTML(placement.placement, placement.handler, placement.title, placement.description, placement.options);
+            content += this.getPlacementsRowTbodyHTML(placement.placement, placement.handler, placement.title, placement.description, placement.options);
         }
         return content;
     }
     
-    static getPlacementsTbodyHTML(placement, handler, title, description, options) {
+    static getPlacementsRowTbodyHTML(placement, handler, title, description, options) {
         return `
             <tr data-placement="${placement}" data-handler="${handler}" data-title="${title}" data-connector="${description}">
                 <td scope="row">${placement}</td>
@@ -86,7 +86,7 @@ export class PlacementTemplate {
                 <td>${description || ""}</td>
                 <td>${options}</td>
                 <td>
-                    <div class="table-cell-settings bx24_events__table_events_remove_row">
+                    <div class="table-cell-settings bx24_events__table_events_remove_row placement_remove">
                         <i class="bi bi-trash bx24_events__table_events_remove_row_i" title="Удалить"></i>
                     </div>
                 </td>

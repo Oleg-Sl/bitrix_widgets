@@ -42,6 +42,7 @@ export class PlacementController {
         if (this.buttonCreateWidget) {
             this.buttonCreateWidget.addEventListener('click', this.registerWidget.bind(this));
         }
+        this.container.addEventListener('click', this.unregisterWidget.bind(this));
     }
 
     render() {
@@ -49,11 +50,23 @@ export class PlacementController {
         this.container.innerHTML = contentHTML;
         $(".chosen-select").chosen({
             search_contains: true
-        }); 
+        });
+    }
+
+    async unregisterWidget(event) {
+        const target = event.target;
+        if (!target.classList.contains('placement_remove')) {
+            return;
+        }
+        const row = target.closest('tr');
+        const placementName = row.dataset.placement;
+        const placementUrl = row.dataset.handler;
+        const result = this.unregisterPlacements(placementName, placementUrl);
+
+        console.log('Widget registration canceled.', result);
     }
 
     async registerWidget() {
-        
         const placementName = this.inputPlacementName.value;
         const placementUrl = this.inputPlacementUrl.value;
         const placementTitle = this.inputPlacementTitle.value;
@@ -69,9 +82,14 @@ export class PlacementController {
         this.buttonSpinnerCreateWidget.classList.remove('d-none');
         try {
             const result = await this.registerPlacements(placementName, placementUrl, placementTitle, placementDescribe);
-            console.log('result = ', result);
+            if (result === true) {
+                console.log('The widget has been successfully registered.');
+            } else {
+                console.log('result = ', result);
+            }
+            
         } catch(error) {
-            console.error('widget registration error: ', error);
+            console.error('Widget registration error: ', error);
         } finally {
             // this.buttonCreateWidget.disabled = false;
             // this.buttonSpinnerCreateWidget.classList.add('d-none');
@@ -96,6 +114,16 @@ export class PlacementController {
                 "OPTIONS": {},
                 "TITLE": placementTitle,
                 "DESCRIPTION": placementDescribe,
+            }
+        );
+    }
+
+    async unregisterPlacements(placementName, placementUrl) {
+        return await this.apiClient.callMethod(
+            "placement.unbind",
+            { 
+                "PLACEMENT": placementName,
+                "HANDLER": placementUrl
             }
         );
     }
