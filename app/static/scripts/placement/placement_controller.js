@@ -54,11 +54,15 @@ export class PlacementController {
     }
 
     async unregisterWidget(event) {
+        console.log(event);
         const target = event.target;
         if (!target.classList.contains('placement_remove')) {
             return;
         }
+        
         const row = target.closest('tr');
+        console.log(row);
+
         const placementName = row.dataset.placement;
         const placementUrl = row.dataset.handler;
         const result = this.unregisterPlacements(placementName, placementUrl);
