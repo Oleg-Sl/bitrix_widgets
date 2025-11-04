@@ -1,7 +1,7 @@
 
 
 export class PlacementTemplate {
-    static createPlacementsTable(awailablePlacements, registredPlacements) {
+    static createTable(awailablePlacements, registredPlacements) {
         console.log('awailablePlacements = ', awailablePlacements);
         console.log('registredPlacements = ', registredPlacements);
         return `

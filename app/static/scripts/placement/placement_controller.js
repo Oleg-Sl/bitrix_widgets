@@ -23,7 +23,7 @@ export class PlacementController {
     }
 
     render() {
-        const contentHTML = this.template.createPlacementsTable(this.awailablePlacements, this.registredPlacements);
+        const contentHTML = this.template.createTable(this.awailablePlacements, this.registredPlacements);
         this.container.innerHTML = contentHTML;
     }
 
