@@ -8,27 +8,38 @@ export class PlacementController {
         this.apiClient = apiClient;
         this.container = document.querySelector(selector);
 
-        this.placements = null;
-
-        
+        this.registredPlacements = null;
+        this.awailablePlacements = null;        
     }
 
     async initialization() {
-        this.placements = await this.getPlacements();
-        console.log('placements = ', this.placements);
+        this.placementsData = await this.getPlacements();
+
+        this.registredPlacements = this.placementsData?.registredPlacements;
+        this.awailablePlacements = this.placementsData?.awailablePlacements;
+
+        console.log('this.registredPlacements = ', this.registredPlacements);
+        console.log('this.awailablePlacements = ', this.awailablePlacements);
         this.render();
     }
 
     render() {
-        const contentHTML = this.template.createPlacementsTable(this.placements);
+        const contentHTML = this.template.createPlacementsTable(this.awailablePlacements, this.registredPlacements);
         this.container.innerHTML = contentHTML;
     }
 
     async getPlacements() {
-        return await this.apiClient.callMethod(
-            'placement.get',
-            {}
-        );
+        // return await this.apiClient.callMethod(
+        //     'placement.get',
+        //     {}
+        // );
+        return await this.apiClient.callBatch(
+            'batch',
+            {
+                registredPlacements: 'placement.get',
+                awailablePlacements: 'placement.list'
+            }
+        )?.result;
     }
 
 }

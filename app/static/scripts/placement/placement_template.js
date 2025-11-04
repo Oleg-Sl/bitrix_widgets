@@ -1,19 +1,20 @@
 
 
 export class PlacementTemplate {
-    static createPlacementsTable(placements) {
+    static createPlacementsTable(awailablePlacements, registredPlacements) {
         return `
             ${this.createStyles()}
             <div class="bx24_events__table_events_container">
-                ${this.createPlacementsTable(placements)}
+                ${this.createPlacementsTable(registredPlacements)}
             </div>
             <div>
-                ${this.registerPlacementsTable()}
+                ${this.registerPlacementsTable(awailablePlacements)}
             </div>
         `;
     }
 
-    static registerPlacementsTable() {
+    static registerPlacementsTable(awailablePlacements) {
+        console.log('awailablePlacements = ', awailablePlacements);
         return `
             <h4>Регистрация виджета</h4>
             <div class="border border-1 rounded p-3">
