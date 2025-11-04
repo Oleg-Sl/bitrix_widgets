@@ -1,14 +1,11 @@
 
 
 export class PlacementTemplate {
-    static createPlacementsHTML(availableEvents, registeredEvents) {
+    static createPlacementsTable(placements) {
         return `
             ${this.createStyles()}
             <div class="bx24_events__table_events_container">
-                ${this.createRegisteredEventsTable(registeredEvents)}
-            </div>
-            <div class="bx24_events__registry_event_container">
-                ${this.createAvailableEventsTable(availableEvents)}
+                ${this.createPlacementsTable(registeredEvents)}
             </div>
         `;
     }
@@ -45,7 +42,7 @@ export class PlacementTemplate {
         `;
     }
 
-    static createRegisteredEventsTable(events) {
+    static createPlacementsTable(placements) {
         let content = `
             <table class="table table-hover table-bordered caption-top bx24_events__table_events">
                 <caption>Список установленных обработчиков событий</caption>
@@ -59,30 +56,45 @@ export class PlacementTemplate {
                     </tr>
                 </thead>
                 <tbody>
-                    ${this.generateRegisteredEventsTbodyHTML(events)}
+                    ${this.generatePlacementsTbodyHTML(placements)}
                 </tbody>
             </table>
         `;
         return content;
     }
+        //     {
+        //     "placement": "CRM_DEAL_LIST_TOOLBAR",
+        //     "userId": 0,
+        //     "handler": "https://myapp.com/?handler=1",
+        //     "options": [],
+        //     "title": "Add invoice",
+        //     "description": "",
+        //     "langAll": {
+        //         "ru": {
+        //             "TITLE": "Add invoice",
+        //             "DESCRIPTION": "",
+        //             "GROUP_NAME": "Documents"
+        //         }
+        //     }
+        // },
 
-    static generateRegisteredEventsTbodyHTML(eventsData) {
+    static generatePlacementsTbodyHTML(placements) {
         let content = '';
-        for (let eventData of eventsData) {
-            content += this.getRowRegisteredEventsTbodyHTML(eventData.event, eventData.offline, eventData.handler, eventData.connector_id);
+        for (let placement of placements) {
+            content += this.getPlacementsTbodyHTML(placement.placement, placement.handler, placement.title, placement.description, placement.options);
         }
         return content
     }
     
-    static getRowRegisteredEventsTbodyHTML(name, isOffline, handler, connectorId) {
-        let typeEventRus = isOffline ? "оффлайн" : "онлайн";
-        let typeEventEng = isOffline ? "offline" : "online";
+    static getPlacementsTbodyHTML(placement, handler, title, description, options) {
         return `
-            <tr data-event="${name}" data-handler="${handler}" data-type="${typeEventEng}" data-connector="${connectorId}">
-                <td scope="row">${name}</td>
+            <tr data-placement="${placement}" data-handler="${handler}" data-title="${title}" data-connector="${description}">
+                <td scope="row">${placement}</td>
                 <td>${typeEventRus}</th>
                 <td>${handler || ""}</td>
-                <td>${connectorId || ""}</td>
+                <td>${title || ""}</td>
+                <td>${description || ""}</td>
+                <td>${options}</td>
                 <td>
                     <div class="table-cell-settings bx24_events__table_events_remove_row">
                         <i class="bi bi-trash bx24_events__table_events_remove_row_i" title="Удалить"></i>

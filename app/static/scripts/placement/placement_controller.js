@@ -8,32 +8,30 @@ export class PlacementController {
         this.apiClient = apiClient;
         this.container = document.querySelector(selector);
 
-        this.availableEvents = null;
-        this.registeredEvents = null;
-
+        this.placements = null;
     }
 
     async initialization() {
-        const eventsData = await this.getEvents();
+        this.placements = await this.getPlacements();
         // console.log('eventsData = ', eventsData);
-        this.availableEvents = eventsData?.result?.availableEvents;
-        this.registeredEvents = eventsData?.result?.registeredEvents;
+        // this.availableEvents = eventsData?.result?.availableEvents;
+        // this.registeredEvents = eventsData?.result?.registeredEvents;
         // console.log('this.availableEvents = ', this.availableEvents);
-        console.log('this.registeredEvents = ', this.registeredEvents);
+        console.log('placements = ', this.placements);
 
         this.render();
     }
 
     render() {
-        const contentHTML = this.template.createAvailableEventsTable(this.availableEvents, this.registeredEvents);
+        const contentHTML = this.template.createPlacementsTable(this.placements);
         this.container.innerHTML = contentHTML;
     }
 
-    async getEvents() {
-        return await this.apiClient.callBatch({
-            availableEvents: 'events',
-            registeredEvents: 'event.get'
-        });
+    async getPlacements() {
+        return await this.apiClient.callMethod(
+            'placement.get',
+            {}
+        );
     }
 
 }
