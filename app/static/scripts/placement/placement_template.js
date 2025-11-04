@@ -2,8 +2,6 @@
 
 export class PlacementTemplate {
     static createTable(awailablePlacements, registredPlacements) {
-        console.log('awailablePlacements = ', awailablePlacements);
-        console.log('registredPlacements = ', registredPlacements);
         return `
             ${this.createStyles()}
             <div class="bx24_events__table_events_container">
@@ -23,7 +21,7 @@ export class PlacementTemplate {
                 <div class="bx24_events__type_event">
                     <label for="name_placementt" class="form-label">Идентификатор места встройки виджета</label>
                     <div>
-                        <select class="form-select chosen-select" aria-label="Default select example" id="name_placement">
+                        <select class="form-select chosen-select" aria-label="Default select example" id="name_placement" placeholder="Выберите место встройки">
                             ${this.getOptionsHTML(awailablePlacements)}
                         </select>
                     </div>   
@@ -41,7 +39,7 @@ export class PlacementTemplate {
                     <input class="form-control" type="text" placeholder="..." aria-label="input example" id="description_placement">
                 </div>
                 <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-2 register-placement">
-                    <button class="btn btn-primary me-md-2" type="button">Зарегистрировать</button>
+                    <button class="btn btn-primary me-md-2" type="button" id="buttonCreateWidget">Зарегистрировать</button>
                 </div>
             </div>
         `;

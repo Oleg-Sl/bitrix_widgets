@@ -9,7 +9,14 @@ export class PlacementController {
         this.container = document.querySelector(selector);
 
         this.registredPlacements = null;
-        this.awailablePlacements = null;        
+        this.awailablePlacements = null;
+
+        this.buttonCreateWidget = null;
+        this.inputPlacementName = null;
+        this.inputPlacementUrl = null;
+        this.inputPlacementTitle = null;
+        this.inputPlacementDescribe = null;
+
     }
 
     async initialization() {
@@ -18,8 +25,22 @@ export class PlacementController {
         this.awailablePlacements = this.placementsData?.result?.awailablePlacements;
 
         console.log('this.registredPlacements = ', this.registredPlacements);
-        // console.log('this.awailablePlacements = ', this.awailablePlacements);
         this.render();
+
+        this.buttonCreateWidget = document.querySelector('#buttonCreateWidget');
+        this.inputPlacementName = document.querySelector('#name_placement');
+        this.inputPlacementUrl = document.querySelector('#url_placement');
+        this.inputPlacementTitle = document.querySelector('#title_placement');
+        this.inputPlacementDescribe = document.querySelector('#description_placement');
+
+        this.initHandlers();
+    }
+
+    initHandlers() {
+        if (this.buttonCreateWidget) {
+            this.buttonCreateWidget.addEventListener('click', );
+        }
+
     }
 
     render() {
@@ -28,6 +49,19 @@ export class PlacementController {
         $(".chosen-select").chosen({
             search_contains: true
         }); 
+    }
+
+    async registerWidget() {
+        const placementName = this.inputPlacementName.value;
+        const placementUrl = this.inputPlacementUrl.value;
+        const placementTitle = this.inputPlacementTitle.value;
+        const placementDescribe = this.inputPlacementDescribe.vaue;
+        console.log({
+            placementName,
+            placementUrl,
+            placementTitle,
+            placementDescribe
+        });
     }
 
     async getPlacements() {
