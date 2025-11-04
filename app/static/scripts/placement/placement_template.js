@@ -59,7 +59,7 @@ export class PlacementTemplate {
                     </tr>
                 </thead>
                 <tbody>
-                    ${this.generateTbodyHTML(events)}
+                    ${this.generateRegisteredEventsTbodyHTML(events)}
                 </tbody>
             </table>
         `;
