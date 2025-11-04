@@ -32,7 +32,7 @@ export class BitrixClient {
     }
 
     async callBatch(cmd) {
-        return await this.callMethodPromise(batch, {
+        return await this.callMethodPromise('batch', {
             halt: 0,
             cmd: cmd
         });
