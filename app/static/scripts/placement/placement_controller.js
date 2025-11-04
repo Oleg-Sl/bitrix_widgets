@@ -25,7 +25,9 @@ export class PlacementController {
     render() {
         const contentHTML = this.template.createTable(this.awailablePlacements, this.registredPlacements);
         this.container.innerHTML = contentHTML;
-        $(".chosen-select").chosen();
+        $(".chosen-select").chosen({
+            search_contains: true
+        }); 
     }
 
     async getPlacements() {
