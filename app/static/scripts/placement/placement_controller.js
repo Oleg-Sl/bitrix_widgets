@@ -68,13 +68,13 @@ export class PlacementController {
         this.buttonCreateWidget.diabled = true;
         this.buttonSpinnerCreateWidget.classList.remove('d-none');
         try {
-            const result = this.registerPlacements(placementName, placementUrl, placementTitle, placementDescribe);
+            const result = await this.registerPlacements(placementName, placementUrl, placementTitle, placementDescribe);
             console.log('result = ', result);
         } catch(error) {
             console.error('widget registration error: ', error);
         } finally {
-            this.buttonCreateWidget.disabled = false;
-            this.buttonSpinnerCreateWidget.classList.add('d-none');
+            // this.buttonCreateWidget.disabled = false;
+            // this.buttonSpinnerCreateWidget.classList.add('d-none');
         }
     }
 

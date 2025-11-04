@@ -38,7 +38,6 @@ export class PlacementTemplate {
                     <input class="form-control" type="text" placeholder="..." aria-label="input example" id="description_placement">
                 </div>
                 <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-2 register-placement">
-                    <button class="btn btn-primary me-md-2" type="button"></button>
                     <button class="btn btn-primary me-md-2" type="button" id="buttonCreateWidget">
                         <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true" id="buttonSpinnerCreateWidget"></span>
                         Зарегистрировать
