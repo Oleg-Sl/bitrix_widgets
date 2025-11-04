@@ -38,7 +38,7 @@ export class PlacementController {
 
     initHandlers() {
         if (this.buttonCreateWidget) {
-            this.buttonCreateWidget.addEventListener('click', );
+            this.buttonCreateWidget.addEventListener('click', this.registerWidget.bind(this));
         }
 
     }
