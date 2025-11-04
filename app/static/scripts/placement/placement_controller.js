@@ -25,14 +25,10 @@ export class PlacementController {
     render() {
         const contentHTML = this.template.createTable(this.awailablePlacements, this.registredPlacements);
         this.container.innerHTML = contentHTML;
-        $("#name_placementt").chosen()
+        $(".chosen-select").chosen();
     }
 
     async getPlacements() {
-        // return await this.apiClient.callMethod(
-        //     'placement.get',
-        //     {}
-        // );
         return await this.apiClient.callBatch(
             {
                 registredPlacements: 'placement.get',
