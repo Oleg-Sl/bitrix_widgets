@@ -17,7 +17,7 @@ export class PlacementController {
         this.inputPlacementUrl = null;
         this.inputPlacementTitle = null;
         this.inputPlacementDescribe = null;
-
+        this.alertPlacement = null;
     }
 
     async initialization() {
@@ -34,6 +34,7 @@ export class PlacementController {
         this.inputPlacementUrl = document.querySelector('#url_placement');
         this.inputPlacementTitle = document.querySelector('#title_placement');
         this.inputPlacementDescribe = document.querySelector('#description_placement');
+        this.alertPlacement = document.querySelector('#placementAlert');
 
         this.initHandlers();
     }
@@ -53,34 +54,12 @@ export class PlacementController {
         });
     }
 
-    async unregisterWidget(event) {
-        console.log(event);
-        const target = event.target;
-        if (!target.classList.contains('placement_remove')) {
-            return;
-        }
-        
-        const row = target.closest('tr');
-        console.log(row);
-
-        const placementName = row.dataset.placement;
-        const placementUrl = row.dataset.handler;
-        const result = this.unregisterPlacements(placementName, placementUrl);
-
-        console.log('Widget registration canceled.', result);
-    }
-
     async registerWidget() {
+        this.hideAlert();
         const placementName = this.inputPlacementName.value;
         const placementUrl = this.inputPlacementUrl.value;
         const placementTitle = this.inputPlacementTitle.value;
         const placementDescribe = this.inputPlacementDescribe.value;
-        console.log({
-            placementName,
-            placementUrl,
-            placementTitle,
-            placementDescribe
-        });
 
         this.buttonCreateWidget.diabled = true;
         this.buttonSpinnerCreateWidget.classList.remove('d-none');
@@ -91,13 +70,46 @@ export class PlacementController {
             } else {
                 console.log('result = ', result);
             }
-            
         } catch(error) {
             console.error('Widget registration error: ', error);
+            this.showAlert(error);
         } finally {
-            // this.buttonCreateWidget.disabled = false;
-            // this.buttonSpinnerCreateWidget.classList.add('d-none');
+            this.buttonCreateWidget.disabled = false;
+            this.buttonSpinnerCreateWidget.classList.add('d-none');
         }
+    }
+
+    async unregisterWidget(event) {
+        this.hideAlert();
+        const target = event.target;
+        if (!target.classList.contains('placement_remove')) {
+            return;
+        }
+
+        const row = target.closest('tr');
+        const placementName = row.dataset.placement;
+        const placementUrl = row.dataset.handler;
+        try {
+            const result = await this.unregisterPlacements(placementName, placementUrl);
+        } catch(error) {
+            console.error('Widget unregistration error: ', error);
+            this.showAlert(error);
+        } finally {
+            this.buttonCreateWidget.disabled = false;
+            this.buttonSpinnerCreateWidget.classList.add('d-none');
+        }
+
+        console.log('Widget registration canceled.', result);
+    }
+
+    showAlert(message) {
+        this.alertPlacement.innerHTML = message;
+        this.alertPlacement.classList.remove('d-none');
+    }
+
+    hideAlert() {
+        this.alertPlacement.innerHTML = '';
+        this.alertPlacement.classList.add('d-none');
     }
 
     async getPlacements() {

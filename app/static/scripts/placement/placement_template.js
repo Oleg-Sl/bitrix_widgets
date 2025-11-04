@@ -10,6 +10,8 @@ export class PlacementTemplate {
             <div>
                 ${this.registerPlacementsTable(awailablePlacements)}
             </div>
+            <div class="alert alert-danger d-none" role="alert" id="placementAlert">
+            </div>
         `;
     }
 
