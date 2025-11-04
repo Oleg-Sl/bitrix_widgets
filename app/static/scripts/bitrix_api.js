@@ -31,6 +31,13 @@ export class BitrixClient {
         return await this.callMethodPromise(method, params);
     }
 
+    async callBatch(cmd) {
+        return await this.callMethodPromise(batch, {
+            halt: 0,
+            cmd: cmd
+        });
+    }
+
     async runBP(templateId, documentId, params = {}) {
         return await this.callMethodPromise(
             'bizproc.workflow.start',
