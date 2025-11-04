@@ -34,7 +34,6 @@ export class PlacementController {
         //     {}
         // );
         return await this.apiClient.callBatch(
-            'batch',
             {
                 registredPlacements: 'placement.get',
                 awailablePlacements: 'placement.list'
