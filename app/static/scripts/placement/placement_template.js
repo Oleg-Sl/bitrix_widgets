@@ -51,7 +51,7 @@ export class PlacementTemplate {
 
     static createPlacementsTable(placements) {
         let content = `
-            <table class="table table-hover table-bordered caption-top bx24_events__table_events">
+            <table class="table table-hover table-bordered caption-top bx24_placements" id="tablePlacements">
                 <caption>Список установленных обработчиков событий</caption>
                 <thead>
                     <tr>

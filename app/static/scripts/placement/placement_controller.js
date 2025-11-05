@@ -11,6 +11,7 @@ export class PlacementController {
         this.registredPlacements = null;
         this.awailablePlacements = null;
 
+        this.tablePlacements = null;
         this.buttonCreateWidget = null;
         this.buttonSpinnerCreateWidget = null;
         this.inputPlacementName = null;
@@ -28,6 +29,7 @@ export class PlacementController {
         console.log('this.registredPlacements = ', this.registredPlacements);
         this.render();
 
+        this.tablePlacements = document.querySelector('#tablePlacements');
         this.buttonCreateWidget = document.querySelector('#buttonCreateWidget');
         this.buttonSpinnerCreateWidget = document.querySelector('#buttonSpinnerCreateWidget');
         this.inputPlacementName = document.querySelector('#name_placement');
@@ -65,12 +67,7 @@ export class PlacementController {
         this.buttonSpinnerCreateWidget.classList.remove('d-none');
         try {
             const result = await this.registerPlacements(placementName, placementUrl, placementTitle, placementDescribe);
-            if (result === true) {
-                console.log('The widget has been successfully registered.');
-            } else {
-                console.error('Widget registration error: ', result);
-                this.showAlert(result);
-            }
+            console.log('The widget has been successfully registered.');
         } catch(error) {
             console.error('Widget registration error: ', error);
             this.showAlert(error);
@@ -92,6 +89,7 @@ export class PlacementController {
         const placementUrl = row.dataset.handler;
         try {
             const result = await this.unregisterPlacements(placementName, placementUrl);
+            this.removeRowWidget(row);
         } catch(error) {
             console.error('Widget unregistration error: ', error);
             this.showAlert(error);
@@ -143,6 +141,9 @@ export class PlacementController {
         );
     }
 
+    removeRowWidget(row) {
+        row.remove();
+    }
 }
 
 
