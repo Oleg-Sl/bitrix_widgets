@@ -67,6 +67,7 @@ export class PlacementController {
         this.buttonSpinnerCreateWidget.classList.remove('d-none');
         try {
             const result = await this.registerPlacements(placementName, placementUrl, placementTitle, placementDescribe);
+            this.addRowWidget(placementName, placementUrl, placementTitle, placementDescribe);
             console.log('The widget has been successfully registered.');
         } catch(error) {
             console.error('Widget registration error: ', error);
@@ -139,6 +140,11 @@ export class PlacementController {
                 "HANDLER": placementUrl
             }
         );
+    }
+
+    addRowWidget(placement, handler, title, description) {
+        const rowHTML = this.template.getPlacementsRowTbodyHTML(placement, handler, title, description);
+        this.tablePlacements.querySelector('tbody').insertAdjacentHTML('beforeend', rowHTML);
     }
 
     removeRowWidget(row) {
