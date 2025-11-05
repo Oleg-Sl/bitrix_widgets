@@ -21,6 +21,18 @@ logging.basicConfig(level=logging.INFO, filename="logs/production_schedule.log",
                     format="%(asctime)s %(levelname)s %(message)s")
 
 
+@router.post("update-stages")
+def update_stages(request: Request, data: Form) -> HTMLResponse:
+    content_type = request.headers.get("content-type")
+    logging.info({
+        "headers": request.headers,
+        "content_type": content_type,
+        "query_parameters": dict(request.query_params),
+        "body": request.body(),
+        "data": data,
+    })
+
+
 # @router.get("/run-bp-update-stages")
 # async def run_bp(request: Request, data: Form) -> HTMLResponse:
 #     content_type = request.headers.get("content-type", "")
