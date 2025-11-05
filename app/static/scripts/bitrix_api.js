@@ -60,4 +60,10 @@ export class BitrixClient {
     async closeApplication() {
         BX24.closeApplication();
     }
+
+    async fitWindow() {
+        BX24.fitWindow();
+    }
+
+
 } 

@@ -39,6 +39,7 @@ export class PlacementController {
         this.alertPlacement = document.querySelector('#placementAlert');
 
         this.initHandlers();
+        this.apiClient.fitWindow();
     }
 
     initHandlers() {
@@ -75,6 +76,7 @@ export class PlacementController {
         } finally {
             this.buttonCreateWidget.disabled = false;
             this.buttonSpinnerCreateWidget.classList.add('d-none');
+            this.apiClient.fitWindow();
         }
     }
 
@@ -97,6 +99,7 @@ export class PlacementController {
         } finally {
             this.buttonCreateWidget.disabled = false;
             this.buttonSpinnerCreateWidget.classList.add('d-none');
+            this.apiClient.fitWindow();
         }
     }
 
