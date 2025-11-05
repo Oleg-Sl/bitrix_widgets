@@ -68,7 +68,8 @@ export class PlacementController {
             if (result === true) {
                 console.log('The widget has been successfully registered.');
             } else {
-                console.log('result = ', result);
+                console.error('Widget registration error: ', result);
+                this.showAlert(result);
             }
         } catch(error) {
             console.error('Widget registration error: ', error);
@@ -98,8 +99,6 @@ export class PlacementController {
             this.buttonCreateWidget.disabled = false;
             this.buttonSpinnerCreateWidget.classList.add('d-none');
         }
-
-        console.log('Widget registration canceled.', result);
     }
 
     showAlert(message) {

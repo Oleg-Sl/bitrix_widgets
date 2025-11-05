@@ -59,7 +59,6 @@ export class PlacementTemplate {
                         <th scope="col">URL обработчика</th>
                         <th scope="col">Название</th>
                         <th scope="col">Описание</th>
-                        <th scope="col">Опции</th>
                         <th scope="col"></th>
                     </tr>
                 </thead>
@@ -74,19 +73,18 @@ export class PlacementTemplate {
     static getPlacementsTbodyHTML(placements) {
         let content = '';
         for (let placement of placements) {
-            content += this.getPlacementsRowTbodyHTML(placement.placement, placement.handler, placement.title, placement.description, placement.options);
+            content += this.getPlacementsRowTbodyHTML(placement.placement, placement.handler, placement.title, placement.description);
         }
         return content;
     }
     
-    static getPlacementsRowTbodyHTML(placement, handler, title, description, options) {
+    static getPlacementsRowTbodyHTML(placement, handler, title, description) {
         return `
             <tr data-placement="${placement}" data-handler="${handler}" data-title="${title}" data-connector="${description}">
                 <td scope="row">${placement}</td>
                 <td>${handler || ""}</td>
                 <td>${title || ""}</td>
                 <td>${description || ""}</td>
-                <td>${options}</td>
                 <td>
                     <div class="table-cell-settings bx24_events__table_events_remove_row placement_remove">
                         <i class="bi bi-trash bx24_events__table_events_remove_row_i placement_remove" title="Удалить"></i>

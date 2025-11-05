@@ -19,7 +19,7 @@ export class BitrixClient {
             let callback = result => {
                 if (result.status != 200 || result.error()) {
                     console.log(`${result.error()} (callMethod ${method}: ${JSON.stringify(params)})`);
-                    return reject("");
+                    return reject(result.error());
                 }
                 return resolve(result.data());
             };
