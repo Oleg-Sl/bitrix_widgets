@@ -27,7 +27,7 @@ async def update_stages(
     request: Request,
     # DOMAIN: Annotated[str, Query()],
     # data: Annotated[CredentialsFormSchema, Form()]
-    PLACEMENT_OPTIONS: Annotated[Json[dict], Form()],,
+    PLACEMENT_OPTIONS: Annotated[Json[dict], Form()],
 ):
     # content_type = request.headers.get("content-type")
     # body = await request.body()
