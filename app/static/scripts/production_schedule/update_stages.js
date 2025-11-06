@@ -9,9 +9,7 @@ export class ProductionScheduleManager {
     }
 
     async update_stages(smartId) {
-        // bpId, entityTypeId, entityId
-        let result = await this.apiClient.runSmartProce
-        bpId, entityTypeId, entityIdssBP(
+        let result = await this.apiClient.runSmartProcessBP(
             this.bpId,
             smartId
             [
