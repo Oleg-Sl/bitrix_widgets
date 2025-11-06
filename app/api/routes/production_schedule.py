@@ -25,29 +25,11 @@ logging.basicConfig(level=logging.INFO, filename="logs/production_schedule.log",
 @router.post("/update-stages")
 async def update_stages(
     request: Request,
-    # DOMAIN: Annotated[str, Query()],
-    # data: Annotated[CredentialsFormSchema, Form()]
     PLACEMENT_OPTIONS: Annotated[Json[dict], Form()],
 ):
-    # content_type = request.headers.get("content-type")
-    # body = await request.body()
-    # logging.error({
-    #     "headers": request.headers,
-    #     "content_type": content_type,
-    #     "query_parameters": dict(request.query_params),
-    #     "body": body.decode("utf-8"),
-    #     # "data": data,
-    # })
-    # return templates.TemplateResponse(
-    #     request=request,
-    #     name="update_stages.html",
-    # )
+    element_id = PLACEMENT_OPTIONS["ID"]
     return {
-        "headers": dict(request.headers),
-        # "content_type": content_type,
-        # "DOMAIN": DOMAIN,
-        # "data": data.model_dump(),
-        "PLACEMENT_OPTIONS": PLACEMENT_OPTIONS,
+        "element_id": element_id,
     }
 # @router.post("/install", response_class=HTMLResponse)
 # async def install(
