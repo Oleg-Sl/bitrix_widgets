@@ -5,7 +5,7 @@ from typing import Annotated
 from fastapi import APIRouter, Request, Query, Form
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, Json
 from app.schemas.credentials import CredentialsFormSchema
 
 
@@ -27,7 +27,7 @@ async def update_stages(
     request: Request,
     # DOMAIN: Annotated[str, Query()],
     # data: Annotated[CredentialsFormSchema, Form()]
-    PLACEMENT_OPTIONS: Annotated[dict, Form()],
+    PLACEMENT_OPTIONS: Annotated[Json[dict], Form()],,
 ):
     # content_type = request.headers.get("content-type")
     # body = await request.body()
