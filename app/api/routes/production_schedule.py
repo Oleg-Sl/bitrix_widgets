@@ -6,6 +6,7 @@ from fastapi import APIRouter, Request, Query, Form
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 from pydantic import BaseModel, ConfigDict, Field
+from app.schemas.credentials import CredentialsFormSchema
 
 
 router = APIRouter(
@@ -21,21 +22,31 @@ logging.basicConfig(level=logging.INFO, filename="logs/production_schedule.log",
                     format="%(asctime)s %(levelname)s %(message)s")
 
 
-@router.post("/update-stages", response_class=HTMLResponse)
-async def update_stages(request: Request) -> HTMLResponse:
+@router.post("/update-stages")
+async def update_stages(
+    request: Request,
+    DOMAIN: Annotated[str, Query()],
+    data: Annotated[CredentialsFormSchema, Form()]
+):
     content_type = request.headers.get("content-type")
-    body = await request.body()
-    logging.error({
-        "headers": request.headers,
+    # body = await request.body()
+    # logging.error({
+    #     "headers": request.headers,
+    #     "content_type": content_type,
+    #     "query_parameters": dict(request.query_params),
+    #     "body": body.decode("utf-8"),
+    #     # "data": data,
+    # })
+    # return templates.TemplateResponse(
+    #     request=request,
+    #     name="update_stages.html",
+    # )
+    return {
+        "headers": dict(request.headers),
         "content_type": content_type,
-        "query_parameters": dict(request.query_params),
-        "body": body.decode("utf-8"),
-        # "data": data,
-    })
-    return templates.TemplateResponse(
-        request=request,
-        name="update_stages.html",
-    )
+        "DOMAIN": DOMAIN,
+        "data": data.model_dump(),
+    }
 # @router.post("/install", response_class=HTMLResponse)
 # async def install(
 #     request: Request,
