@@ -22,13 +22,14 @@ logging.basicConfig(level=logging.INFO, filename="logs/production_schedule.log",
 
 
 @router.post("/update-stages", response_class=HTMLResponse)
-def update_stages(request: Request) -> HTMLResponse:
+async def update_stages(request: Request) -> HTMLResponse:
     content_type = request.headers.get("content-type")
+    body = await request.body()
     logging.info({
         "headers": request.headers,
         "content_type": content_type,
         "query_parameters": dict(request.query_params),
-        "body": request.body(),
+        "body": body.decode("utf-8"),
         # "data": data,
     })
     return templates.TemplateResponse(
