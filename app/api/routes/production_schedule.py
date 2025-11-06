@@ -25,10 +25,10 @@ logging.basicConfig(level=logging.INFO, filename="logs/production_schedule.log",
 @router.post("/update-stages")
 async def update_stages(
     request: Request,
-    DOMAIN: Annotated[str, Query()],
+    # DOMAIN: Annotated[str, Query()],
     data: Annotated[CredentialsFormSchema, Form()]
 ):
-    content_type = request.headers.get("content-type")
+    # content_type = request.headers.get("content-type")
     # body = await request.body()
     # logging.error({
     #     "headers": request.headers,
@@ -43,8 +43,8 @@ async def update_stages(
     # )
     return {
         "headers": dict(request.headers),
-        "content_type": content_type,
-        "DOMAIN": DOMAIN,
+        # "content_type": content_type,
+        # "DOMAIN": DOMAIN,
         "data": data.model_dump(),
     }
 # @router.post("/install", response_class=HTMLResponse)
