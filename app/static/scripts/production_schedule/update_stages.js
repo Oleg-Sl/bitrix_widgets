@@ -15,6 +15,7 @@ export class ProductionScheduleManager {
             smartId
         );
         console.log('Update Stages BP started:', result);
+        this.apiClient.closeApplication();
     }
 }
 
