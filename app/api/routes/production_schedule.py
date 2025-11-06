@@ -27,18 +27,16 @@ async def update_stages(
     request: Request,
     PLACEMENT_OPTIONS: Annotated[Json[dict], Form()],
 ):
-    element_id = PLACEMENT_OPTIONS["ID"]
-    return {
-        "element_id": element_id,
-    }
-# @router.post("/install", response_class=HTMLResponse)
-# async def install(
-#     request: Request,
-#     DOMAIN: Annotated[str, Query()],
-#     data: Annotated[CredentialsFormSchema, Form()]
-# ) -> HTMLResponse:
-#     return templates.TemplateResponse(request=request, name="install.html")
+    element_id = PLACEMENT_OPTIONS.get("ID")
 
+    return templates.TemplateResponse(
+        request=request,
+        name="update_stages.html",
+        context={
+            "element_id": element_id
+        }
+    )
+    
 
 # @router.get("/run-bp-update-stages")
 # async def run_bp(request: Request, data: Form) -> HTMLResponse:
