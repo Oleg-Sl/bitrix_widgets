@@ -11,12 +11,8 @@ export class ProductionScheduleManager {
     async update_stages(smartId) {
         let result = await this.apiClient.runSmartProcessBP(
             this.bpId,
+            this.smartTypeId,
             smartId
-            [
-                'crm',
-                'Bitrix\\Crm\\Integration\\BizProc\\Document\\Dynamic',
-                `DYNAMIC_${this.smartTypeId}_${smartId}`
-            ]
         );
         console.log('Update Stages BP started:', result);
     }
