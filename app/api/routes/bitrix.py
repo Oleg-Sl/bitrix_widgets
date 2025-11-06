@@ -28,8 +28,6 @@ async def index(request: Request) -> HTMLResponse:
 
 @router.post("/install", response_class=HTMLResponse)
 async def install(
-    request: Request,
-    DOMAIN: Annotated[str, Query()],
-    data: Annotated[CredentialsFormSchema, Form()]
+    request: Request
 ) -> HTMLResponse:
     return templates.TemplateResponse(request=request, name="install.html")
