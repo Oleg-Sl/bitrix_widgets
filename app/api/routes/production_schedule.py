@@ -25,7 +25,7 @@ logging.basicConfig(level=logging.INFO, filename="logs/production_schedule.log",
 async def update_stages(request: Request) -> HTMLResponse:
     content_type = request.headers.get("content-type")
     body = await request.body()
-    logging.info({
+    logging.error({
         "headers": request.headers,
         "content_type": content_type,
         "query_parameters": dict(request.query_params),
