@@ -4,12 +4,16 @@ import { BitrixClient } from '../bitrix_api.js';
 export class ProductionScheduleManager {
     constructor(apiClient) {
         this.apiClient = apiClient;
+        this.bpId = 1885;
         this.smartTypeId = 179;
     }
 
     async update_stages(smartId) {
-        let result = await this.apiClient.runBP(
-            this.smartTypeId,
+        // bpId, entityTypeId, entityId
+        let result = await this.apiClient.runSmartProce
+        bpId, entityTypeId, entityIdssBP(
+            this.bpId,
+            smartId
             [
                 'crm',
                 'Bitrix\\Crm\\Integration\\BizProc\\Document\\Dynamic',
