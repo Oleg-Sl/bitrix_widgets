@@ -1,14 +1,27 @@
-import { callMethodPromise, runBP, runSmartProcessBP, closeApplication } from '../bitrix_api.js';
+import { BitrixClient } from '../bitrix_api.js';
 
 
-function main() {
-    
-    runSmartProcessBP(bpId, entityTypeId, entityId, params = {});
+export class ProductionScheduleManager {
+    constructor(apiClient) {
+        this.apiClient = apiClient;
+        this.smartTypeId = 179;
+    }
+
+    async update_stages(smartId) {
+        let result = await this.apiClient.runBP(
+            'crm',
+            'Bitrix\\Crm\\Integration\\BizProc\\Document\\Dynamic',
+            `DYNAMIC_${this.smartTypeId}_${smartId}`
+        );
+        console.log('Update Stages BP started:', result);
+    }
 }
 
 
 document.addEventListener("DOMContentLoaded", () => {
-    // BX24.init(async function() {
-        console.log('Application was loader');
-    // });
+    BX24.init(async function() {
+        const apiClient = new BitrixClient();
+        const productionScheduleManager = new ProductionScheduleManager(apiClient);
+        await productionScheduleManager.update_stages(smartId);
+    });
 });
